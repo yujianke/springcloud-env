@@ -16,5 +16,11 @@
         <module>product-service-api</module>
     </modules>
 
-
+ <dependencies>
+     <!--openfeign-->
+     <dependency>
+         <groupId>org.springframework.cloud</groupId>
+         <artifactId>spring-cloud-starter-openfeign</artifactId>
+     </dependency>
+ </dependencies>
 </project>

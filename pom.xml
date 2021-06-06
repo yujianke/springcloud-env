@@ -13,6 +13,8 @@
         <module>cloud-service</module>
         <module>cloud-service-api</module>
         <module>cloud-common</module>
+        <module>cloud-common-db</module>
+        <module>cloud-common-db</module>
     </modules>
     <packaging>pom</packaging>
 
