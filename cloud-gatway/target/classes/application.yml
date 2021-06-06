@@ -1,0 +1,42 @@
+server:
+  port: 9091
+spring:
+  application:
+    name: cloud-gatway
+  cloud:
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]': # 匹配所有请求
+            allowedOrigins: "*" #跨域处理 允许所有的域
+            allowedMethods: # 支持的方法
+              - GET
+              - POST
+              - PUT
+              - DELETE
+      routes:
+        - id: customer-service
+          uri: lb://cloud-customer #lb://微服务名称
+          predicates:
+            - Path=/customer/** #断言拦截
+          filters:
+            - StripPrefix=1 #去掉Path前缀,参数为1代表去掉/customer
+        - id: product-service
+          uri: lb://cloud-product #lb://微服务名称
+          predicates:
+            - Path=/product/** #断言拦截
+          filters:
+            - StripPrefix=1 #去掉Path前缀,参数为1代表去掉/customer
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9090/eureka/
+  instance:
+    prefer-ip-address: true
+management:
+  endpoint:
+    gateway:
+      enabled: true
+    web:
+      exposure:
+        include: true
